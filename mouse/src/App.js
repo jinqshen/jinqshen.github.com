@@ -3,7 +3,7 @@ import { Row, Col, Layout, Menu, Dropdown, Breadcrumb, Avatar, Icon } from 'antd
 import {HashRouter, Route, Link} from 'react-router-dom';
 import Game from './components/Game';
 import Photo from './components/Photo';
-import app from './App.module.css';
+import app from './App.module.scss';
 import iconLogo from './public/img/icon-logo.png';
 
 const { SubMenu } = Menu;

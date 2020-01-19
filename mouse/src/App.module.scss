@@ -1,0 +1,25 @@
+.white {
+  background-color: #ffffff;
+  z-index: 10;
+  -webkit-box-shadow: 0 2px 8px #f0f1f2;
+  box-shadow: 0 2px 8px #f0f1f2;
+  .logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    float: left;
+    .logo-image {
+      width: 50px;
+      vertical-align: auto;
+    }
+  }
+  .caret-gray {
+    color: #282c34;
+  }
+}
+
+
+
+
+
+
