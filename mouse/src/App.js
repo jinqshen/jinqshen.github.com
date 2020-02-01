@@ -3,6 +3,7 @@ import { Row, Col, Layout, Menu, Dropdown, Breadcrumb, Avatar, Icon } from 'antd
 import {HashRouter, Route, Link} from 'react-router-dom';
 import Game from './components/Game';
 import Photo from './components/Photo';
+import Chart from './components/Chart';
 import app from './App.module.scss';
 import iconLogo from './public/img/icon-logo.png';
 
@@ -90,7 +91,9 @@ export default class App extends React.Component {
                   }
                 >
                   <Menu.Item key="5">工作总结</Menu.Item>
-                  <Menu.Item key="6">技术学习</Menu.Item>
+                  <Menu.Item key="6">
+                    <Link id="chart" to="/work/chart">技术学习</Link>
+                  </Menu.Item>
                   <Menu.Item key="7">职业规划</Menu.Item>
                   <Menu.Item key="8">个人简历</Menu.Item>
                 </SubMenu>
@@ -137,6 +140,7 @@ export default class App extends React.Component {
               >
                 <Route path="/amuse/King" component={ Game }></Route>
                 <Route path="/life/photos" component={ Photo }></Route>
+                <Route path="/work/chart" component={ Chart }></Route>
               </Content>
             </Layout>
           </Layout>
