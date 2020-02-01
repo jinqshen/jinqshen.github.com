@@ -19,21 +19,46 @@ export default class Chart extends React.Component {
         const myChart = echarts.init(document.getElementById('chart'));
         const option = {
             color: '#46ff84',
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                inverse: true,
-                data: xdata
-            },
-            yAxis: {
-                type: 'value',
-                position: 'right'
-            },
+            grid: [
+                {
+                    bottom: '60%'
+                },{
+                    top: '60%'
+                }
+            ],
+            xAxis: [
+                {
+                    type: 'category',
+                    boundaryGap: false,
+                    inverse: true,
+                    data: xdata,
+                    gridIndex: 0
+                },{
+                    type: 'category',
+                    boundaryGap: false,
+                    inverse: true,
+                    data: xdata,
+                    gridIndex: 1
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    position: 'right',
+                    gridIndex: 0
+                },{
+                    type: 'value',
+                    position: 'right',
+                    gridIndex: 1
+                }
+            ],
             series: [
                 {
                     type: 'line',
                     smooth: true,
                     symbol: 'none',
+                    xAxisIndex: 0,
+                    yAxisIndex: 0,
                     areaStyle: {
                         color: '#46ff84'
                     },
@@ -41,9 +66,22 @@ export default class Chart extends React.Component {
                         color: '#18ff65'
                     },
                     data: this.state.data
+                },{
+                    type: 'line',
+                    smooth: true,
+                    symbol: 'none',
+                    xAxisIndex: 1,
+                    yAxisIndex: 1,
+                    areaStyle: {
+                        color: '#4aa8ff'
+                    },
+                    lineStyle: {
+                        color: '#1890ff'
+                    },
+                    data: this.state.data
                 }
             ]
-        };
+        }; 
         myChart.showLoading('default', {
             text: 'loading',
             color: '#46ff84',
@@ -78,9 +116,12 @@ export default class Chart extends React.Component {
 
     render() {
         return (
-            <div id="chart" style={{width: 300, height: 200}}>
-
+            <div>
+                <div id="chart" style={{width: 500, height: 600}}>
+                                
+                </div>
             </div>
+            
         )
     }
 }

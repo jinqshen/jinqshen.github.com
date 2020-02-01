@@ -92,7 +92,7 @@ export default class App extends React.Component {
                 >
                   <Menu.Item key="5">工作总结</Menu.Item>
                   <Menu.Item key="6">
-                    <Link id="chart" to="/work/chart">技术学习</Link>
+                    <Link id="Chart" to="/work/chart">技术学习</Link>
                   </Menu.Item>
                   <Menu.Item key="7">职业规划</Menu.Item>
                   <Menu.Item key="8">个人简历</Menu.Item>
