@@ -1,9 +1,15 @@
 import React from 'react';
 import { Row, Col, Layout, Menu, Dropdown, Breadcrumb, Avatar, Icon } from 'antd';
+import { HomeTwoTone, CaretDownOutlined, HeartTwoTone, GithubOutlined, PictureTwoTone, IdcardTwoTone,
+  VideoCameraTwoTone, ContactsTwoTone, CustomerServiceTwoTone, ReadOutlined } from '@ant-design/icons';
 import {HashRouter, Route, Link} from 'react-router-dom';
 import Game from './components/Game';
 import Photo from './components/Photo';
+import Story from './components/Story';
 import Chart from './components/Chart';
+import VideoPlayer from './components/VideoPlayer';
+import MusicPlayer from './components/MusicPlayer';
+import FileUploader from './components/FileUploader';
 import app from './App.module.scss';
 import iconLogo from './public/img/icon-logo.png';
 
@@ -13,7 +19,7 @@ const { Header, Content, Sider } = Layout;
 const menu = (
   <Menu>
     <Menu.Item key="0">
-      <Icon type="login" />
+      <GithubOutlined />
       <span>登录</span>
     </Menu.Item>
   </Menu>
@@ -48,7 +54,7 @@ export default class App extends React.Component {
                   <Menu.Item key="1" style={{float:"right"}}>
                     <a className={["ant-dropdown-link", app['caret-gray']].join(' ')} href="#">
                       <Avatar src={iconLogo} />
-                      <Icon type="caret-down" />
+                      <CaretDownOutlined />
                     </a>
                   </Menu.Item>
                 </Dropdown>
@@ -69,15 +75,17 @@ export default class App extends React.Component {
                   key="sub1"
                   title={
                     <span>
-                      <Icon type="home" />
+                      <HomeTwoTone />
                       生活
                     </span>
                   }
                 >
                   <Menu.Item key="1">
-                    <Link id="Photos" to="/life/photos">相册</Link>
+                    <Link id="Photos" to="/life/photos"><PictureTwoTone />相册</Link>
                   </Menu.Item>
-                  <Menu.Item key="2">待开发</Menu.Item>
+                  <Menu.Item key="2">
+                    <Link id="Story" to="/life/story"><ReadOutlined />故事</Link>
+                  </Menu.Item>
                   <Menu.Item key="3">待开发</Menu.Item>
                   <Menu.Item key="4">待开发</Menu.Item>
                 </SubMenu>
@@ -85,7 +93,7 @@ export default class App extends React.Component {
                   key="sub2"
                   title={
                     <span>
-                      <Icon type="laptop" />
+                      <ContactsTwoTone />
                       工作
                     </span>
                   }
@@ -95,13 +103,13 @@ export default class App extends React.Component {
                     <Link id="Chart" to="/work/chart">技术学习</Link>
                   </Menu.Item>
                   <Menu.Item key="7">职业规划</Menu.Item>
-                  <Menu.Item key="8">个人简历</Menu.Item>
+                  <Menu.Item key="8"><IdcardTwoTone />个人简历</Menu.Item>
                 </SubMenu>
                 <SubMenu
                   key="sub3"
                   title={
                     <span>
-                      <Icon type="heart" />
+                      <HeartTwoTone twoToneColor="#eb2f96" />
                       情感
                     </span>
                   }
@@ -115,19 +123,24 @@ export default class App extends React.Component {
                   key="sub4"
                   title={
                     <span>
-                      <Icon type="gift" />
+                      <CustomerServiceTwoTone />
                       娱乐
                     </span>
                   }
                 >
-                  <Menu.Item key="13">音乐</Menu.Item>
+                  <Menu.Item key="13">
+                    <Link id="amuseMusic" to="/amuse/music"></Link>音乐
+                  </Menu.Item>
                   <Menu.Item key="14">电视剧</Menu.Item>
-                  <Menu.Item key="15">电影</Menu.Item>
+                  <Menu.Item key="15">
+                    <Link id="amuseMovie" to="/amuse/movie"><VideoCameraTwoTone />电影</Link>
+                  </Menu.Item>
                   <Menu.Item key="16">
                     <Link id="amuseKing" to="/amuse/King">游戏</Link>
                   </Menu.Item>
                 </SubMenu>
               </Menu>
+              <MusicPlayer></MusicPlayer>
             </Sider>
             <Layout style={{ padding:"0px 0px 0px 1px" }}>
               <Content
@@ -139,7 +152,11 @@ export default class App extends React.Component {
                 }}
               >
                 <Route path="/amuse/King" component={ Game }></Route>
+                <Route path="/amuse/movie" component={ VideoPlayer }></Route>
+                <Route path="/amuse/music" component={ FileUploader }></Route>
+                {/* <Route path="/amuse/music" component={ MusicPlayer }></Route> */}
                 <Route path="/life/photos" component={ Photo }></Route>
+                <Route path="/life/story" component={ Story }></Route>
                 <Route path="/work/chart" component={ Chart }></Route>
               </Content>
             </Layout>

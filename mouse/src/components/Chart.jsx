@@ -90,15 +90,19 @@ export default class Chart extends React.Component {
             zlevel: 0
         });
         myChart.setOption(option);
-        setTimeout(() => {
+        this.timeout = setTimeout(() => {
             myChart.hideLoading();
             this.changeData(myChart, option);
         }, 2000);
         
     }
+    componentWillUnmount = () => {
+        clearInterval(this.interval);
+        clearTimeout(this.timeout);
+    }
 
     changeData = (myChart, option) => {
-        setInterval(() => {
+        this.interval = setInterval(() => {
             const datas = this.state.data;
             const random = Math.random() * 100;
             if(datas.length <= 61) {

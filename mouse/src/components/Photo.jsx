@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Row, Col, Affix, Button, Icon, Modal, Tooltip, Input } from 'antd';
+import { PlusSquareOutlined } from '@ant-design/icons';
 
 const { Meta } = Card;
 const { TextArea } = Input;
@@ -65,21 +66,23 @@ export default class Photo extends React.Component {
 
     handleOk = e => {
         const albumList = this.state.album;
-        albumList.push(this.state.albumTemp)
         this.setState({
-            album: albumList,
-            confirmLoading: true,
-            albumTemp: {
-                name: "",
-                description: "",
-                createDate: "2020年1月18日",
-                defaultCover: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-            }
+            addAlbumModalconfirmLoading: true,
         });
         setTimeout(() => {
+            albumList.push(this.state.albumTemp);
             this.setState({
                 addAlbumModalFlag: false,
-                confirmLoading: false,
+                addAlbumModalconfirmLoading: false,
+            });
+            this.setState({
+                album: albumList,
+                albumTemp: {
+                    name: "",
+                    description: "",
+                    createDate: "2020年1月18日",
+                    defaultCover: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                }
             });
         }, 2000);
     };
@@ -94,11 +97,9 @@ export default class Photo extends React.Component {
         return (
             <div>
                 <Affix offsetTop="300">
-                    <Tooltip title="新增相册">
-                        <Button type="primary" style={{ float:"right" }} onClick={() => this.showModal()} >
-                            <Icon type="plus-circle" />
-                        </Button>
-                    </Tooltip>
+                    <Button type="primary" style={{ float:"right" }} onClick={() => this.showModal()} >
+                        <PlusSquareOutlined />
+                    </Button>
                 </Affix>
                 <Row gutter={16}>
                     { this.state.album.map(item => {
