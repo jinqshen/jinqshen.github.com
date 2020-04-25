@@ -3,10 +3,12 @@ import { Row, Col, Layout, Menu, Dropdown, Breadcrumb, Avatar, Icon } from 'antd
 import { HomeTwoTone, CaretDownOutlined, HeartTwoTone, GithubOutlined, PictureTwoTone, IdcardTwoTone,
   VideoCameraTwoTone, ContactsTwoTone, CustomerServiceTwoTone, ReadOutlined } from '@ant-design/icons';
 import {HashRouter, Route, Link} from 'react-router-dom';
+import RouterBreadcrumb from './components/RouterBreadcrumb';
 import Game from './components/Game';
 import Photo from './components/Photo';
 import Story from './components/Story';
 import Chart from './components/Chart';
+import MdEditor from './components/MdEditor';
 import VideoPlayer from './components/VideoPlayer';
 import MusicPlayer from './components/MusicPlayer';
 import FileUploader from './components/FileUploader';
@@ -25,6 +27,20 @@ const menu = (
   </Menu>
 );
 
+const breadcrumbNameMap = {
+  '/life': '生活',
+  '/work': '工作',
+  '/emotion': '情感',
+  '/amuse': '娱乐',
+  '/amuse/King': '游戏',
+  '/amuse/movie': '电影',
+  '/amuse/music': '音乐',
+  '/life/photos': '相册',
+  '/life/story': '故事',
+  '/work/chart': '技术学习',
+  '/work/summary': '工作总结'
+};
+
 export default class App extends React.Component {
 
   constructor() {
@@ -34,31 +50,37 @@ export default class App extends React.Component {
     }
   }
 
+
+
   render() {
     return (
       <HashRouter>
         <Layout>
           <Header className={app.white}>
-            <Row>
-              <div className={app.logo}>
-                <img className={app['logo-image']} src={iconLogo} alt="logo" />
-                <span>Mouse</span>
-              </div>
-              <Menu
-                theme="white"
-                mode="horizontal"
-                defaultSelectedKeys={[]}
-                style={{ lineHeight: '64px' }}
-              >
-                <Dropdown overlay={menu} trigger={['click']}>
-                  <Menu.Item key="1" style={{float:"right"}}>
-                    <a className={["ant-dropdown-link", app['caret-gray']].join(' ')} href="#">
-                      <Avatar src={iconLogo} />
-                      <CaretDownOutlined />
-                    </a>
-                  </Menu.Item>
-                </Dropdown>
-              </Menu>
+            <Row justify="space-between">
+              <Col span={2}>
+                <div className={app.logo}>
+                  <img className={app['logo-image']} src={iconLogo} alt="logo" />
+                  <span>Mouse</span>
+                </div>
+              </Col>
+              <Col span={2}>
+                <Menu
+                  theme="white"
+                  mode="horizontal"
+                  defaultSelectedKeys={[]}
+                  style={{ lineHeight: '64px' }}
+                >
+                  <Dropdown overlay={menu} trigger={['click']}>
+                    <Menu.Item key="1" style={{float:"right"}}>
+                      <a className={["ant-dropdown-link", app['caret-gray']].join(' ')} href="#">
+                        <Avatar src={iconLogo} />
+                        <CaretDownOutlined />
+                      </a>
+                    </Menu.Item>
+                  </Dropdown>
+                </Menu>
+              </Col>
             </Row>
           </Header>
           <Row style={{ height:"20px", backgroundColor:"#fff" }}>
@@ -98,7 +120,9 @@ export default class App extends React.Component {
                     </span>
                   }
                 >
-                  <Menu.Item key="5">工作总结</Menu.Item>
+                  <Menu.Item key="5">
+                    <Link id="Paper" to="/work/summary">工作总结</Link>
+                  </Menu.Item>
                   <Menu.Item key="6">
                     <Link id="Chart" to="/work/chart">技术学习</Link>
                   </Menu.Item>
@@ -151,6 +175,7 @@ export default class App extends React.Component {
                   minHeight: 700,
                 }}
               >
+                <RouterBreadcrumb></RouterBreadcrumb>
                 <Route path="/amuse/King" component={ Game }></Route>
                 <Route path="/amuse/movie" component={ VideoPlayer }></Route>
                 <Route path="/amuse/music" component={ FileUploader }></Route>
@@ -158,6 +183,7 @@ export default class App extends React.Component {
                 <Route path="/life/photos" component={ Photo }></Route>
                 <Route path="/life/story" component={ Story }></Route>
                 <Route path="/work/chart" component={ Chart }></Route>
+                <Route path="/work/summary" component={ MdEditor }></Route>
               </Content>
             </Layout>
           </Layout>

@@ -1,4 +1,4 @@
-const { override, fixBabelImports, addLessLoader, addWebpackPlugin } = require('customize-cra');
+const { override, fixBabelImports, addLessLoader, addWebpackPlugin, addWebpackModuleRule } = require('customize-cra');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 process.env.GENERATE_SOURCEMAP = "false";
@@ -14,5 +14,6 @@ module.exports = override(
         javascriptEnabled: true,
         modifyVars: {}
     }),
-    addWebpackPlugin(new AntdDayjsWebpackPlugin())
+    addWebpackPlugin(new AntdDayjsWebpackPlugin()),
+    addWebpackModuleRule({test: /\.md$/, use: 'raw-loader'})
 );
