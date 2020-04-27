@@ -9,17 +9,20 @@ import Photo from './components/Photo';
 import Story from './components/Story';
 import Chart from './components/Chart';
 import MdEditor from './components/MdEditor';
+import Article from './components/Article';
+import Paper from './components/Paper';
+import ArticleListAll from './store/containers/article';
 import VideoPlayer from './components/VideoPlayer';
 import MusicPlayer from './components/MusicPlayer';
 import FileUploader from './components/FileUploader';
-import app from './App.module.scss';
+import app from './App.module.less';
 import iconLogo from './public/img/icon-logo.png';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 const menu = (
-  <Menu>
+  <Menu style={{marginTop:20}}>
     <Menu.Item key="0">
       <GithubOutlined />
       <span>登录</span>
@@ -64,22 +67,22 @@ export default class App extends React.Component {
                   <span>Mouse</span>
                 </div>
               </Col>
-              <Col span={2}>
-                <Menu
+              <Col span={1}>
+                {/* <Menu
                   theme="white"
                   mode="horizontal"
                   defaultSelectedKeys={[]}
                   style={{ lineHeight: '64px' }}
-                >
-                  <Dropdown overlay={menu} trigger={['click']}>
-                    <Menu.Item key="1" style={{float:"right"}}>
-                      <a className={["ant-dropdown-link", app['caret-gray']].join(' ')} href="#">
+                > */}
+                  <Dropdown overlay={menu} trigger={['click']} style={{float: "right"}}>
+                    {/* <Menu.Item key="1" style={{float:"right"}}> */}
+                      <a className={["ant-dropdown-link", app['caret-gray']].join(' ')}  onClick={e => e.preventDefault()}>
                         <Avatar src={iconLogo} />
                         <CaretDownOutlined />
                       </a>
-                    </Menu.Item>
+                    {/* </Menu.Item> */}
                   </Dropdown>
-                </Menu>
+                {/* </Menu> */}
               </Col>
             </Row>
           </Header>
@@ -121,7 +124,7 @@ export default class App extends React.Component {
                   }
                 >
                   <Menu.Item key="5">
-                    <Link id="Paper" to="/work/summary">工作总结</Link>
+                    <Link id="Summary" to="/work/summary/list">工作总结</Link>
                   </Menu.Item>
                   <Menu.Item key="6">
                     <Link id="Chart" to="/work/chart">技术学习</Link>
@@ -183,7 +186,8 @@ export default class App extends React.Component {
                 <Route path="/life/photos" component={ Photo }></Route>
                 <Route path="/life/story" component={ Story }></Route>
                 <Route path="/work/chart" component={ Chart }></Route>
-                <Route path="/work/summary" component={ MdEditor }></Route>
+                <Route path="/work/summary/list" component={ ArticleListAll }></Route>
+                <Route path="/work/summary/aaa" component={ Article }></Route>
               </Content>
             </Layout>
           </Layout>
