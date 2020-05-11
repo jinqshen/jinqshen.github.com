@@ -1,8 +1,6 @@
-### React学习笔记
+#### react（一切都用js）
 
-##### react（一切都用js）
-
-##### 虚拟DOM的概念：（用js对象形式来模拟页面上的DOM嵌套关系，以JS对象形式存在）
+#### 虚拟DOM的概念：（用js对象形式来模拟页面上的DOM嵌套关系，以JS对象形式存在）
 
 - DOM:document object model浏览器中的概念，用js对象来表示页面上的元素，并提供了操作DOM对象的API
 - 虚拟DOM:框架中的概念，是程序员用js对象来模拟页面上的DOM和DOM嵌套
@@ -42,13 +40,13 @@
     2. 浏览器要在内存中解析DOM结构，并在浏览器内存中，渲染出一棵DOM树
     3. 浏览器把DOM树呈现到页面上
 
-##### Diff算法：（高效新旧DOM对比算法）
+#### Diff算法：（高效新旧DOM对比算法）
 
 - tree diff:新旧两棵DOM树，逐层对比的过程
 - component diff:在tree diff比对过程中，每一层中组件级别的对比，叫做component diff
 - element diff:在进行component diff过程中，如果组件相同就进行元素级别的对比
 
-##### 创建webpack4.x项目
+#### 创建webpack4.x项目
 
 1.  `npm init -y`
 2.  项目下创建`src`源目录和`dist`产品目录
@@ -62,13 +60,13 @@
    默认输出文件:`dist->main.js`
    4.x新增了`mode`选项(必选项):`development production`
 
-##### webpack-dev-server的基本使用
+#### webpack-dev-server的基本使用
 
 - 安装`npm install webpack-dev-server`
 - 在`package.json`中增加`"dev":webpack-dev-server --open(自动打开浏览器) --port 3000(设置端口) --hot --progress(打包进度) --compress(压缩)  --host 127.0.0.1(指定域名)` 
 - `npm run dev`启动后，会在根目录(内存中)写`main.js`，所以要实现热部署需要在`index.html`引入根目录下的`main.js`(不可见)  写在内存的原因是因为内存快
 
-##### html-webpack-plugin
+#### html-webpack-plugin
 
 作用是将指定文件生成在内存中，这里是将首页`index.html`生成在内存中
 
@@ -87,7 +85,7 @@
 
 - 将生成的插件实例放到`plugins:[htmlPlugin]`
 
-##### 项目中使用react
+#### 项目中使用react
 
 - 安装包`npm install react react-dom`
   - `react:`用于创建组件和DOM，同时组件的生命周期都在这个包中
@@ -101,7 +99,7 @@
   - `import React from 'react'`
   - `import ReactDOM from 'react-dom'`
 
-##### react创建，渲染虚拟DOM元素
+#### react创建，渲染虚拟DOM元素
 
 - 方式一：`React.createElement()`方法
 
@@ -170,7 +168,7 @@
   ReactDOM.render(mytest, document.getElementById('app'));
   ```
 
-##### jsx中使用js
+#### jsx中使用js
 
 在jsx控制区域内需要写js代码，需要用{}包住
 
@@ -239,7 +237,7 @@ ReactDOM.render(
 )
 ```
 
-##### 循环中key的作用
+#### 循环中key的作用
 
 作用：保持每个元素的状态
 
@@ -307,7 +305,7 @@ ReactDOM.render(
 )
 ```
 
-##### 关于jsx语法的注意事项
+#### 关于jsx语法的注意事项
 
 - 关键字冲突问题：
   - `class`属性 => `className`
@@ -330,7 +328,7 @@ ReactDOM.render(
   const myh2 = <div></div><h1>my h1</h1>;{ /* 无根元素包裹，错误 */}
   ```
 
-##### react创建组件(两种方式)
+#### react创建组件(两种方式)
 
 如果一个组件需要有私有数据，则用有状态组件，反之用无状态组件
 
@@ -554,7 +552,7 @@ React官网说：无状态组件效率会高一些，因为其无私有数据和
   - state/data中的数据都是组件私有的(通过ajax获取回来的数据，一般都是私有数据)
   - state/data中的数据可读写，props中的数据只读
 
-##### ES6展开运算符(...)
+#### ES6展开运算符(...)
 
 ```js
 var obj1 = {
@@ -586,14 +584,14 @@ var obj2 = {
 }
 ```
 
-##### 将组件抽离为单独的jsx文件
+#### 将组件抽离为单独的jsx文件
 
 - 将组件代码抽取出来作为一个单独的jsx文件
 - 并在jsx文件中导入React包
 - 要在主页中应用组件，需要导入jsx文件，默认不能省略.jsx后缀，可以通过配置webpack.config.js中的resolve.extensions属性来设置省略
 - 配置webpack.config.js中的resolve.alias属性来配置别名@ : path.join(__dirname, './src')
 
-##### JSX中写行内样式style
+#### JSX中写行内样式style
 
 - 基本使用
 
@@ -834,7 +832,7 @@ style="color:red"
   <li className={[Css.title, 'test'].join(' ')}>id:{ props.id } name:{ props.name } director:{ props.director }</li>
   ```
 
-##### 绑定事件
+#### 绑定事件
 
 - React有一套自己的绑定事件命名，小驼峰
 
@@ -1007,7 +1005,7 @@ export default class Cmd extends React.Component {
   }
   ```
 
-##### 生命周期
+#### 生命周期
 
 - Vue的生命周期
 
@@ -1015,7 +1013,7 @@ export default class Cmd extends React.Component {
 
 - React的生命周期
 
-##### React路由
+#### React路由
 
 - 下载路由组件
 

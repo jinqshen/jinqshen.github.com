@@ -1,7 +1,7 @@
 import React from 'react';
-import { Row, Col, Layout, Menu, Dropdown, Breadcrumb, Avatar, Icon } from 'antd';
+import { Row, Col, Layout, Menu, Dropdown, Tooltip, Avatar, Space } from 'antd';
 import { HomeTwoTone, CaretDownOutlined, HeartTwoTone, GithubOutlined, PictureTwoTone, IdcardTwoTone,
-  VideoCameraTwoTone, ContactsTwoTone, CustomerServiceTwoTone, ReadOutlined } from '@ant-design/icons';
+  VideoCameraTwoTone, ContactsTwoTone, CustomerServiceTwoTone, ReadOutlined, MenuFoldOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
 import {HashRouter, Route, Link} from 'react-router-dom';
 import RouterBreadcrumb from './components/RouterBreadcrumb';
 import Game from './components/Game';
@@ -11,6 +11,7 @@ import Chart from './components/Chart';
 import MdEditor from './components/MdEditor';
 import Article from './components/Article';
 import Paper from './components/Paper';
+import Shopping from './store/containers/product';
 import ArticleListAll from './store/containers/article';
 import VideoPlayer from './components/VideoPlayer';
 import MusicPlayer from './components/MusicPlayer';
@@ -49,11 +50,15 @@ export default class App extends React.Component {
   constructor() {
     super()
     this.state = {
-
+      collapsed: false
     }
   }
 
-
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  }
 
   render() {
     return (
@@ -63,11 +68,14 @@ export default class App extends React.Component {
             <Row justify="space-between">
               <Col span={2}>
                 <div className={app.logo}>
-                  <img className={app['logo-image']} src={iconLogo} alt="logo" />
-                  <span>Mouse</span>
+                  <Space>
+                    <img className={app['logo-image']} src={iconLogo} alt="logo" />
+                    <span>Mouse</span>
+                    <a onClick={this.toggle}>{this.state.collapsed ? <Tooltip title="展开菜单"><MenuUnfoldOutlined /></Tooltip> : <Tooltip title="收起菜单"><MenuFoldOutlined /></Tooltip>}</a>
+                  </Space>
                 </div>
               </Col>
-              <Col span={1}>
+              <Col span={2}>
                 {/* <Menu
                   theme="white"
                   mode="horizontal"
@@ -89,7 +97,7 @@ export default class App extends React.Component {
           <Row style={{ height:"20px", backgroundColor:"#fff" }}>
           </Row>
           <Layout>
-            <Sider width={200} style={{ background: '#fff' }}>
+            <Sider width={200} style={{ background: '#fff' }} collapsible collapsed={this.state.collapsed} trigger={null}>
               <Menu
                 mode="inline"
                 defaultSelectedKeys={[]}
@@ -99,10 +107,10 @@ export default class App extends React.Component {
                 <SubMenu
                   key="sub1"
                   title={
-                    <span>
+                    <>
                       <HomeTwoTone />
-                      生活
-                    </span>
+                      <span>生活</span>
+                    </>
                   }
                 >
                   <Menu.Item key="1">
@@ -111,16 +119,18 @@ export default class App extends React.Component {
                   <Menu.Item key="2">
                     <Link id="Story" to="/life/story"><ReadOutlined />故事</Link>
                   </Menu.Item>
-                  <Menu.Item key="3">待开发</Menu.Item>
+                  <Menu.Item key="3">
+                    <Link id="Shop" to="/life/shop">购物</Link>
+                  </Menu.Item>
                   <Menu.Item key="4">待开发</Menu.Item>
                 </SubMenu>
                 <SubMenu
                   key="sub2"
                   title={
-                    <span>
+                    <>
                       <ContactsTwoTone />
-                      工作
-                    </span>
+                      <span>工作</span>
+                    </>
                   }
                 >
                   <Menu.Item key="5">
@@ -135,10 +145,10 @@ export default class App extends React.Component {
                 <SubMenu
                   key="sub3"
                   title={
-                    <span>
+                    <>
                       <HeartTwoTone twoToneColor="#eb2f96" />
-                      情感
-                    </span>
+                      <span>情感</span>
+                    </>
                   }
                 >
                   <Menu.Item key="9">待开发</Menu.Item>
@@ -149,10 +159,10 @@ export default class App extends React.Component {
                 <SubMenu
                   key="sub4"
                   title={
-                    <span>
+                    <>
                       <CustomerServiceTwoTone />
-                      娱乐
-                    </span>
+                      <span>娱乐</span>
+                    </>
                   }
                 >
                   <Menu.Item key="13">
@@ -178,13 +188,14 @@ export default class App extends React.Component {
                   minHeight: 700,
                 }}
               >
-                <RouterBreadcrumb></RouterBreadcrumb>
+                {/* <RouterBreadcrumb></RouterBreadcrumb> */}
                 <Route path="/amuse/King" component={ Game }></Route>
                 <Route path="/amuse/movie" component={ VideoPlayer }></Route>
                 <Route path="/amuse/music" component={ FileUploader }></Route>
                 {/* <Route path="/amuse/music" component={ MusicPlayer }></Route> */}
                 <Route path="/life/photos" component={ Photo }></Route>
                 <Route path="/life/story" component={ Story }></Route>
+                <Route path="/life/shop" component={ Shopping }></Route>
                 <Route path="/work/chart" component={ Chart }></Route>
                 <Route path="/work/summary/list" component={ ArticleListAll }></Route>
                 <Route path="/work/summary/aaa" component={ Article }></Route>

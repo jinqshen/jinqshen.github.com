@@ -2,19 +2,37 @@ import React from 'react';
 import 'aplayer/dist/APlayer.min.css';
 import APlayer from 'aplayer';
 import axios from 'axios';
+import conf from '../public/media/music/conf.json';
 
 
 export default class MusicPlayer extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             hostname: 'http://localhost:5000'
         }
     }
 
-    componentDidMount() {
-        var self = this;
+    componentDidMount = () => {
+        console.log(conf)
+        const musicList = conf.map(music => {
+            return {
+                name: music.name,
+                artist: music.author,
+                url: require('../public/media/music/' + music.filename),
+                lrc: require('../public/media/music/lrc/' + music.lrc),
+                cover:require('../public/media/music/cover/' + music.cover)
+            }
+        })
+        console.log(musicList)
+        new APlayer({
+            container: document.getElementById('aplayer'),
+            lrcType: 3,
+            fixed: true,
+            audio: musicList
+        })
+        /* var self = this;
         axios.get(self.state.hostname + '/getMusicRes')
         .then(response => {
             const audioList = [];
@@ -36,7 +54,7 @@ export default class MusicPlayer extends React.Component {
             };
             
             self.player = new APlayer(self.options);
-        });
+        }); */
     }
     
     /*componentWillUnmount() {

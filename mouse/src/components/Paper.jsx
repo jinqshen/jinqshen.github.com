@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import {HashRouter, Route, Link} from 'react-router-dom';
 import CodeBlock from './CodeBlock';
-import Game from './Game';
+import ReactLearn from '../public/md/ReactLearn.md';
 
 export default class Paper extends React.Component {
 
@@ -16,7 +15,7 @@ export default class Paper extends React.Component {
     render() {
         return (
             <>
-                <ReactMarkdown source={this.props.content} escapeHtml={false} renderers={{code: CodeBlock}} ></ReactMarkdown>
+                <ReactMarkdown source={this.props.content || ReactLearn} escapeHtml={false} renderers={{code: CodeBlock}} ></ReactMarkdown>
             </>
         )
     }

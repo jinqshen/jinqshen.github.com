@@ -1,0 +1,73 @@
+[
+    {
+        "id": 0,
+        "name": "新·九九八十一 + 爱殇 + 蒹葭白露 + 天地有道 (Live)",
+        "author": "肥皂菌、小时姑娘、方颂评、易言",
+        "filename": "肥皂菌、小时姑娘、方颂评、易言 - 新·九九八十一 + 爱殇 + 蒹葭白露 + 天地有道 (Live).mp3",
+        "lrc": "肥皂菌、小时姑娘、方颂评、易言 - 新·九九八十一 + 爱殇 + 蒹葭白露 + 天地有道 (Live).lrc",
+        "cover": "icon1.jpg"
+    },{
+        "id": 1,
+        "name": "海伦 - 桥边姑娘",
+        "author": "海伦",
+        "filename": "海伦 - 桥边姑娘.flac",
+        "lrc": "海伦 - 桥边姑娘.lrc",
+        "cover": "icon2.jpeg"
+    },{
+        "id": 2,
+        "name": "小时 - 爱殇",
+        "author": "小时姑娘",
+        "filename": "小时 - 爱殇.flac",
+        "lrc": "小时 - 爱殇.lrc",
+        "cover": "icon3.jpeg"
+    },{
+        "id": 3,
+        "name": "小星星Aurora - 坠落星空",
+        "author": "小星星Aurora",
+        "filename": "小星星Aurora - 坠落星空.flac",
+        "lrc": "小星星Aurora - 坠落星空.lrc",
+        "cover": "icon4.png"
+    },{
+        "id": 4,
+        "name": "杨千嬅 - 处处吻",
+        "author": "杨千嬅",
+        "filename": "杨千嬅 - 处处吻.flac",
+        "lrc": "杨千嬅 - 处处吻.lrc",
+        "cover": "icon5.png"
+    },{
+        "id": 5,
+        "name": "中島美嘉 - 僕が死のうと思ったのは (曾经我也想过一了百了)",
+        "author": "中島美嘉",
+        "filename": "中島美嘉 - 僕が死のうと思ったのは (曾经我也想过一了百了).flac",
+        "lrc": "中島美嘉 - 僕が死のうと思ったのは (曾经我也想过一了百了).lrc",
+        "cover": "icon6.jpeg"
+    },{
+        "id": 6,
+        "name": "Dave Rodgers - Déjà Vu",
+        "author": "Dave Rodgers",
+        "filename": "Dave Rodgers - Déjà Vu.mp3",
+        "lrc": "Dave Rodgers - Déjà Vu.lrc",
+        "cover": "icon7.jpeg"
+    },{
+        "id": 7,
+        "name": "傅如乔 - 微微",
+        "author": "傅如乔",
+        "filename": "傅如乔 - 微微.flac",
+        "lrc": "傅如乔 - 微微.lrc",
+        "cover": "icon8.jpeg"
+    },{
+        "id": 8,
+        "name": "胡彦斌、白举纲 - 单恋一枝花 (Live)",
+        "author": "胡彦斌、白举纲",
+        "filename": "胡彦斌、白举纲 - 单恋一枝花 (Live).flac",
+        "lrc": "胡彦斌、白举纲 - 单恋一枝花 (Live).lrc",
+        "cover": "icon9.jpeg"
+    },{
+        "id": 9,
+        "name": "霍尊 - 天行九歌",
+        "author": "霍尊",
+        "filename": "霍尊 - 天行九歌.flac",
+        "lrc": "霍尊 - 天行九歌.lrc",
+        "cover": "icon10.jpeg"
+    }
+]

@@ -32,7 +32,7 @@ const initdata = {
     content: 'test content'
 }
 
-const articles = (state = [initdata, initdata, initdata], action) => {
+const articles = (state = [initdata], action) => {
     switch(action.type) {
         case 'ADD_ARTICLE':
             return [

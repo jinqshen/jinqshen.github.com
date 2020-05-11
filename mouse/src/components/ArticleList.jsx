@@ -45,7 +45,7 @@ export default class ArticleList extends React.Component {
                             <List.Item.Meta
                                 avatar={<Avatar src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
                                 title={<Link to="/work/summary/aaa">{item.title}</Link>}
-                                description={<>{item.classify.map(classifyItem => (<Tag color={classifyItem.color}>{classifyItem.text}</Tag>))}</>}
+                                description={<>{item.classify.map(classifyItem => (<Tag key={classifyItem.color} color={classifyItem.color}>{classifyItem.text}</Tag>))}</>}
                                 />
                                 {item.abstract}
                         </List.Item>

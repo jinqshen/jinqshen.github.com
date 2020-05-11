@@ -1,5 +1,5 @@
 import React from 'react';
-import game from '../public/css/Game.module.scss';
+import game from '../public/css/Game.module.less';
 
 const requireContext = require.context("../public/img/game/", true, /^\.\/.*\.jpg$/);
 const images = requireContext.keys().map(requireContext);
