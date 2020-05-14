@@ -1,4 +1,5 @@
 import React from 'react';
+import NProgress from 'nprogress';
 import game from '../public/css/Game.module.less';
 
 const requireContext = require.context("../public/img/game/", true, /^\.\/.*\.jpg$/);
@@ -10,7 +11,16 @@ export default class Game extends React.Component {
         super();
         this.state = {
 
-        }
+        };
+        NProgress.start();
+    }
+
+    componentWillMount = () => {
+        NProgress.set(0.5);
+    }
+
+    componentDidMount = () => {
+        NProgress.done(true);
     }
 
     render() {

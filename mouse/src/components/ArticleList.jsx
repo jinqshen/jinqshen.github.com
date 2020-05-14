@@ -2,6 +2,7 @@ import React from 'react';
 import { List, Avatar, Tag } from 'antd';
 import { Link } from 'react-router-dom';
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import NProgress from 'nprogress';
 
 export default class ArticleList extends React.Component {
 
@@ -9,7 +10,16 @@ export default class ArticleList extends React.Component {
         super(props);
         this.state = {
 
-        }
+        };
+        NProgress.start();
+    }
+
+    componentWillMount = () => {
+        NProgress.set(0.5);
+    }
+
+    componentDidMount = () => {
+        NProgress.done(true);
     }
 
     render() {
@@ -18,7 +28,7 @@ export default class ArticleList extends React.Component {
                 <List itemLayout="vertical" size="large" 
                     pagination={{
                         onChange: page => {},
-                        pageSize: 10
+                        pageSize: 5
                     }}
                     dataSource={this.props.articles}
                     renderItem={item => (
@@ -44,7 +54,7 @@ export default class ArticleList extends React.Component {
                             }>
                             <List.Item.Meta
                                 avatar={<Avatar src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
-                                title={<Link to="/work/summary/aaa">{item.title}</Link>}
+                                title={<Link to={"/work/summary/" + item.index}>{item.title}</Link>}
                                 description={<>{item.classify.map(classifyItem => (<Tag key={classifyItem.color} color={classifyItem.color}>{classifyItem.text}</Tag>))}</>}
                                 />
                                 {item.abstract}

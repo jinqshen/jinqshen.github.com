@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.54d6efea.chunk.css",
-    "main.js": "/static/js/main.5611e4bf.chunk.js",
+    "main.css": "/static/css/main.4fe126cb.chunk.css",
+    "main.js": "/static/js/main.d529c00d.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.375ca987.js",
-    "static/css/2.c3232417.chunk.css": "/static/css/2.c3232417.chunk.css",
-    "static/js/2.139f4782.chunk.js": "/static/js/2.139f4782.chunk.js",
+    "static/css/2.2cb6ac86.chunk.css": "/static/css/2.2cb6ac86.chunk.css",
+    "static/js/2.b29d2193.chunk.js": "/static/js/2.b29d2193.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.395dec5163a6e9f28a68cab75421fe5c.js": "/precache-manifest.395dec5163a6e9f28a68cab75421fe5c.js",
+    "precache-manifest.029eb315a56a5ad088d8958eed154423.js": "/precache-manifest.029eb315a56a5ad088d8958eed154423.js",
     "service-worker.js": "/service-worker.js",
-    "static/js/2.139f4782.chunk.js.LICENSE": "/static/js/2.139f4782.chunk.js.LICENSE",
+    "static/js/2.b29d2193.chunk.js.LICENSE": "/static/js/2.b29d2193.chunk.js.LICENSE",
     "static/media/CORSAK、马吟吟 - 溯 (Reverse).lrc": "/static/media/CORSAK、马吟吟 - 溯 (Reverse).b200044e.lrc",
     "static/media/Chrysanthemum.jpg": "/static/media/Chrysanthemum.076e3cae.jpg",
     "static/media/Dave Rodgers - Déjà Vu.mp3": "/static/media/Dave Rodgers - Déjà Vu.94176ad1.mp3",
@@ -85,9 +85,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.375ca987.js",
-    "static/css/2.c3232417.chunk.css",
-    "static/js/2.139f4782.chunk.js",
-    "static/css/main.54d6efea.chunk.css",
-    "static/js/main.5611e4bf.chunk.js"
+    "static/css/2.2cb6ac86.chunk.css",
+    "static/js/2.b29d2193.chunk.js",
+    "static/css/main.4fe126cb.chunk.css",
+    "static/js/main.d529c00d.chunk.js"
   ]
 }

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Carousel, Row, Col, Input, AutoComplete, Badge, Card, Tooltip, Tag } from 'antd';
+import { Carousel, Row, Col, Input, AutoComplete, Badge, Card, Tooltip, Tag, Dropdown, Button, Menu } from 'antd';
 import { SearchOutlined, CameraOutlined, ShoppingCartOutlined, HeartTwoTone, ShoppingTwoTone } from '@ant-design/icons';
+import NProgress from 'nprogress';
 
 const { Search } = Input;
 const requireContext = require.context("../public/img/shop/", true, /^\.\/.*\.jpg$/);
@@ -15,12 +16,19 @@ export default class Shopping extends React.Component {
         this.state = {
             search_condition: '',
             options: [],
-            products: 0
+            products: 0,
+            visible: false
         }
+        NProgress.start();
     }
 
     componentWillMount = () =>{
-        this.productList = ['小米手机', 'AMD 3600', 'iphone SE', 'mac book Air', 'mac book pro'];
+        this.productList = ['Cat', 'Mouse', '草莓', '橘子', '菠萝', '柠檬', '苹果'];
+        NProgress.set(0.5);
+    }
+
+    componentDidMount = () => {
+        NProgress.done(true);
     }
 
     getRecommend = () => {
@@ -37,8 +45,7 @@ export default class Shopping extends React.Component {
     }
 
     searchResult = query => {
-        let queryRegExp = new RegExp(query);
-        return this.productList.filter(value => value.match(queryRegExp)).map(value => ({
+        return this.productList.filter(value => value.toLowerCase().indexOf(query.toLowerCase()) !== -1 ? true : false).map(value => ({
             value: value,
             label: (<div style={{display: 'flex', justifyContent: 'space-between'}}><span>{value}</span></div>)
         }));
@@ -50,6 +57,41 @@ export default class Shopping extends React.Component {
             search_condition: value,
             options: options
         });
+    }
+
+    handleVisibleChange = flag => {
+        this.setState({
+            visible: flag
+        });
+    }
+
+    handleMenuClick = e => {
+        if(e.key === 'null') {
+            this.setState({ visible: false });
+        }
+    }
+
+    shopCarMenu = () => {
+        return (
+            <Menu onClick={this.handleMenuClick}>
+                {this.props.productInCar.length === 0 ? <Menu.Item key="null">购物车空空如也</Menu.Item> : this.props.productInCar.map(product => {
+                    const id = product.productId;
+                    return (
+                        <Menu.Item key={product.productId}>
+                            <Row>
+                                <Col span={6}>
+                                    <img width={40} src={product.productCover} />
+                                </Col>
+                                <Col span={18}>
+                                    <Row justify="center">{product.abstract}</Row>
+                                    <Row justify="end">{'￥' + product.productPrice + ' x 1'}&nbsp;&nbsp;<Button danger size="small" onClick={() => this.props.putProduct(id)}>删除</Button></Row>
+                                </Col>
+                            </Row>
+                        </Menu.Item>
+                    );
+                })}
+            </Menu>
+        )
     }
 
     render() {
@@ -67,14 +109,18 @@ export default class Shopping extends React.Component {
                         </AutoComplete>
                     </Col>
                     <Col span={6}>
-                        <Row align="middle">
-                            <Col>我的购物车</Col>
-                            <Col>
-                                <Badge count={this.props.productInCar.length} showZero>
-                                    <ShoppingCartOutlined style={{ fontSize:28 }} />
-                                </Badge>
-                            </Col>
-                        </Row>
+                        <Dropdown overlay={this.shopCarMenu()} visible={this.state.visible} onVisibleChange={this.handleVisibleChange}>
+                            <Button size="large">
+                                <Row align="middle">
+                                    <Col>我的购物车</Col>
+                                    <Badge count={this.props.productInCar.length} showZero>
+                                        <Col>
+                                            <ShoppingCartOutlined style={{ fontSize:20, marginTop:3 }} />
+                                        </Col>
+                                    </Badge>
+                                </Row>
+                            </Button>
+                        </Dropdown>
                     </Col>
                     <Col span={20}>
                         <Carousel autoplay>
@@ -86,7 +132,7 @@ export default class Shopping extends React.Component {
                     {this.props.products.filter(product => product.isVisibility).map(product => {
                         let id = product.productId;
                         return (
-                            <Col span={6} key={product.productId}>
+                            <Col xl={6} lg={8} md={12} sm={24} xs={24} key={product.productId}>
                                 <Card cover={<img alt="mouse" src={product.productCover} />}
                                     actions={[
                                         <Tooltip title="关注"><a onClick={() => this.props.followProduct(id)}><HeartTwoTone twoToneColor={product.isFollow ? '#eb2f96' : '#4d4d4e'} /></a></Tooltip>,
@@ -98,8 +144,6 @@ export default class Shopping extends React.Component {
                             </Col>
                         )
                     })}
-                    
-
                 </Row>
             </>
         )

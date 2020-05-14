@@ -1,5 +1,6 @@
 import echarts from 'echarts/lib/echarts';
 import React from 'react';
+import NProgress from 'nprogress';
 import 'echarts/lib/chart/line';
 
 export default class Chart extends React.Component {
@@ -8,7 +9,12 @@ export default class Chart extends React.Component {
         super();
         this.state = {
             data: []
-        }
+        };
+        NProgress.start();
+    }
+
+    componentWillMount = () => {
+        NProgress.set(0.5);
     }
 
     componentDidMount = () => {
@@ -94,6 +100,7 @@ export default class Chart extends React.Component {
             myChart.hideLoading();
             this.changeData(myChart, option);
         }, 2000);
+        NProgress.done(true);
         
     }
     componentWillUnmount = () => {

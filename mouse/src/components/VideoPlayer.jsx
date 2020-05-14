@@ -1,5 +1,6 @@
 import React from 'react';
 import videojs from 'video.js';
+import NProgress from 'nprogress';
 import 'video.js/dist/video-js.min.css';
 
 export default class VideoPlayer extends React.Component {
@@ -7,17 +8,21 @@ export default class VideoPlayer extends React.Component {
     constructor() {
         super();
         this.state = {
-            videoUrl: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
-            videoUrla: 'http://192.168.101.110:5000/static/movie/肥皂菌、小时姑娘、方颂评、易言 - 新·九九八十一 + 爱殇 + 蒹葭白露 + 天地有道 (Live).mkv'
-        }
+            videoUrl: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4'
+        };
+        NProgress.start();
     }
 
-    componentDidMount() {
+    componentWillMount = () => {
+        NProgress.set(0.5);
+    }
+
+    componentDidMount = () => {
         this.props = {
             autoplay: false,
             controls: true,
             sources: [{
-                src: this.state.videoUrla,
+                src: this.state.videoUrl,
                 type: 'video/mp4'
             }]
         };
@@ -25,6 +30,7 @@ export default class VideoPlayer extends React.Component {
             console.log('onPlayerReady', this);
         });
         //this.player.play();
+        NProgress.done(true);
     }
 
     componentWillUnmount() {

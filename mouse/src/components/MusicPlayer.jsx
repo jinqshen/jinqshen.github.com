@@ -1,7 +1,6 @@
 import React from 'react';
 import 'aplayer/dist/APlayer.min.css';
 import APlayer from 'aplayer';
-import axios from 'axios';
 import conf from '../public/media/music/conf.json';
 
 
@@ -15,7 +14,6 @@ export default class MusicPlayer extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log(conf)
         const musicList = conf.map(music => {
             return {
                 name: music.name,
@@ -25,7 +23,6 @@ export default class MusicPlayer extends React.Component {
                 cover:require('../public/media/music/cover/' + music.cover)
             }
         })
-        console.log(musicList)
         new APlayer({
             container: document.getElementById('aplayer'),
             lrcType: 3,

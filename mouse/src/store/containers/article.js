@@ -1,30 +1,23 @@
 import { connect } from 'react-redux';
 import { getArticle, getArticles, addArticle } from '../actions/article';
-import ArticleList from '../../components/ArticleList';
+import Article from '../../components/Article';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+    const id = +ownProps.match.params.id;
     return {
-        articles: state.articles
+        article: state.articles.filter(article => article.index === id)[0]
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        addArticle: article => {
-            dispatch(addArticle(article));
-        },
-        getArticles: () => {
-            dispatch(getArticles());
-        },
-        getArticle: index => {
-            dispatch(getArticle(index));
-        }
+
     }
 }
 
-const ArticleListAll = connect(
+const ArticlePaper = connect(
     mapStateToProps,
     mapDispatchToProps
-)(ArticleList);
+)(Article);
 
-export default ArticleListAll;
+export default ArticlePaper;

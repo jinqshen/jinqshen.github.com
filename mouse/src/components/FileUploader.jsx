@@ -1,5 +1,6 @@
 import React from 'react';
 import { Upload, message, Button, Icon } from 'antd';
+import NProgress from 'nprogress';
 
 const props = {
     name: 'file',
@@ -22,7 +23,16 @@ export default class FileUploader extends React.Component {
         super();
         this.state = {
 
-        }
+        };
+        NProgress.start();
+    }
+
+    componentWillMount = () => {
+      NProgress.set(0.5);
+    }
+
+    componentDidMount = () => {
+      NProgress.done(true);
     }
 
     /* componentDidMount = () => {

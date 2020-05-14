@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Row, Col, Affix, Button, Icon, Modal, Tooltip, Input } from 'antd';
 import { PlusSquareOutlined } from '@ant-design/icons';
+import NProgress from 'nprogress';
 
 const { Meta } = Card;
 const { TextArea } = Input;
@@ -41,7 +42,16 @@ export default class Photo extends React.Component {
                 createDate: "2020年1月18日",
                 defaultCover: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
             }
-        }
+        };
+        NProgress.start();
+    }
+
+    componentWillMount = () => {
+        NProgress.set(0.5);
+    }
+
+    componentDidMount = () => {
+        NProgress.done(true);
     }
 
     changeAlbumTempName = (e) => {

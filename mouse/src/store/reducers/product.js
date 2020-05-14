@@ -57,8 +57,7 @@ const initdata = [{
 const product = (state = initdata, action) => {
     switch(action.type) {
         case 'GET_PRODUCTS_BY_QUERY':
-            let queryRegExp = new RegExp(action.query);
-            return state.map((value) => (value.abstract.match(queryRegExp) || value.shop.match(queryRegExp)) ? {...value, isVisibility: true} : {...value, isVisibility: false});
+            return state.map((value) => (value.abstract.toLowerCase().indexOf(action.query.toLowerCase()) !== -1 || value.shop.toLowerCase().indexOf(action.query.toLowerCase())) !== -1 ? {...value, isVisibility: true} : {...value, isVisibility: false});
         case 'FOLLOW_PRODUCT':
             return state.map(value => {
                 return (value.productId === action.id) ? {...value, isFollow: !value.isFollow} : value

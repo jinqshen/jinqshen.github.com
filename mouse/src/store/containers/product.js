@@ -3,7 +3,6 @@ import { getProductsByQuery, followProduct, putProduct } from '../actions/produc
 import Shopping from '../../components/Shopping';
 
 const mapStateToProps = state => {
-    console.log(state.products);
     return {
         products: state.products,
         productInCar: state.products.filter(product => product.isPut)
