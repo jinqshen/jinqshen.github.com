@@ -1,6 +1,6 @@
 import React from 'react';
 import NProgress from 'nprogress';
-import game from '../public/css/Game.module.less';
+import game from '../public/less/Game.module.less';
 
 const requireContext = require.context("../public/img/game/", true, /^\.\/.*\.jpg$/);
 const images = requireContext.keys().map(requireContext);

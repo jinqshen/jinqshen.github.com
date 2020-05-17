@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getArticle, getArticles, addArticle } from '../actions/article';
+import { addComment, changeReplyInputStatus } from '../actions/article';
 import Article from '../../components/Article';
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,9 +9,16 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const index = +ownProps.match.params.id;
     return {
-
+        addComment: (parent_id, content) => {
+            dispatch(addComment(index, parent_id, content));
+            dispatch(changeReplyInputStatus(index, parent_id));
+        },
+        changeReplyInputStatus: id => {
+            dispatch(changeReplyInputStatus(index, id));
+        }
     }
 }
 

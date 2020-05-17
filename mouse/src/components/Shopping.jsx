@@ -80,7 +80,7 @@ export default class Shopping extends React.Component {
                         <Menu.Item key={product.productId}>
                             <Row>
                                 <Col span={6}>
-                                    <img width={40} src={product.productCover} />
+                                    <img width={40} src={product.productCover} alt="" />
                                 </Col>
                                 <Col span={18}>
                                     <Row justify="center">{product.abstract}</Row>

@@ -12,6 +12,10 @@ export default class CodeBlock extends React.Component {
         }
     }
 
+    shouldComponentUpdate = () => {
+        return false;
+    }
+
     setRef(el) {
         this.codeEl = el;
     }

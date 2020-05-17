@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getArticle, getArticles, addArticle } from '../actions/article';
+import { getArticle, getArticles, addArticle, addComment } from '../actions/article';
 import ArticleList from '../../components/ArticleList';
 
 const mapStateToProps = state => {
@@ -18,6 +18,9 @@ const mapDispatchToProps = dispatch => {
         },
         getArticle: index => {
             dispatch(getArticle(index));
+        },
+        addComment: (index, parent_id, content) => {
+            dispatch(addComment(index, parent_id, content));
         }
     }
 }

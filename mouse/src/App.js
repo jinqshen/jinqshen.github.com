@@ -1,8 +1,10 @@
 import React from 'react';
-import { Row, Col, Layout, Menu, Dropdown, Tooltip, Avatar, Space, Button } from 'antd';
+import { Row, Col, Layout, Menu, Dropdown, Tooltip, Avatar, Space, Button, Modal } from 'antd';
 import { HomeTwoTone, CaretDownOutlined, HeartTwoTone, GithubOutlined, PictureTwoTone, IdcardTwoTone,
-  VideoCameraTwoTone, ContactsTwoTone, CustomerServiceTwoTone, ReadOutlined, MenuFoldOutlined,MenuUnfoldOutlined } from '@ant-design/icons';
-import { HashRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
+  VideoCameraTwoTone, ContactsTwoTone, CustomerServiceTwoTone, ReadOutlined, MenuFoldOutlined,MenuUnfoldOutlined, QrcodeOutlined,
+  ShopTwoTone } from '@ant-design/icons';
+import { HashRouter, Route, Link, Switch, Redirect, BrowserRouter } from 'react-router-dom';
+import QRCode from 'qrcode.react';
 import RouterBreadcrumb from './components/RouterBreadcrumb';
 import Game from './components/Game';
 import Photo from './components/Photo';
@@ -16,6 +18,8 @@ import ArticleListAll from './store/containers/articles';
 import VideoPlayer from './components/VideoPlayer';
 import MusicPlayer from './components/MusicPlayer';
 import FileUploader from './components/FileUploader';
+import Technical from './components/Technical';
+import QRCodeDemo from './components/QRCodeDemo';
 import app from './App.module.less';
 import 'nprogress/nprogress.css';
 import iconLogo from './public/img/icon-logo.png';
@@ -23,21 +27,13 @@ import iconLogo from './public/img/icon-logo.png';
 const { SubMenu } = Menu;
 const { Header, Content, Sider, Footer } = Layout;
 
-const menu = (
-  <Menu>
-    <Menu.Item key="0">
-      <GithubOutlined />
-      <span>登录</span>
-    </Menu.Item>
-  </Menu>
-);
-
 export default class App extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      collapsed: false
+      collapsed: false,
+      visible: false
     }
   }
   
@@ -48,6 +44,35 @@ export default class App extends React.Component {
 
   }
 
+  showQrCode = () => {
+    this.setState({
+      visible: true
+    });
+  }
+
+  handleCancel = () => {
+    this.setState({
+      visible: false
+    });
+  }
+
+  getMenu = () => {
+    return (
+      <>
+        <Menu>
+          <Menu.Item key="0">
+            <GithubOutlined />
+            <span>登录</span>
+          </Menu.Item>
+          <Menu.Item key="1" onClick={this.showQrCode}>
+            <QrcodeOutlined />
+            <span>打赏</span>
+          </Menu.Item>
+        </Menu>
+      </>
+    )
+  }
+
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed
@@ -56,7 +81,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <Layout>
           <Layout>
             <Sider theme="light" width={200} collapsible collapsed={this.state.collapsed} trigger={null}>
@@ -86,7 +111,7 @@ export default class App extends React.Component {
                     <Link id="Story" to="/life/story"><ReadOutlined />故事</Link>
                   </Menu.Item>
                   <Menu.Item key="3">
-                    <Link id="Shop" to="/life/shop">购物</Link>
+                    <Link id="Shop" to="/life/shop"><ShopTwoTone />购物</Link>
                   </Menu.Item>
                   <Menu.Item key="4">待开发</Menu.Item>
                 </SubMenu>
@@ -103,7 +128,7 @@ export default class App extends React.Component {
                     <Link id="Summary" to="/work/summary">工作总结</Link>
                   </Menu.Item>
                   <Menu.Item key="6">
-                    <Link id="Chart" to="/work/chart">技术学习</Link>
+                    <Link id="Chart" to="/work/technical">技术学习</Link>
                   </Menu.Item>
                   <Menu.Item key="7">职业规划</Menu.Item>
                   <Menu.Item key="8"><IdcardTwoTone />个人简历</Menu.Item>
@@ -149,7 +174,7 @@ export default class App extends React.Component {
               <Header style={{background: '#fff'}}>
                 <Row justify="space-between">
                   <a style={{marginLeft: -30, color: '#282c34'}} onClick={this.toggle}>{this.state.collapsed ? <Tooltip title="展开菜单"><MenuUnfoldOutlined /></Tooltip> : <Tooltip title="收起菜单"><MenuFoldOutlined /></Tooltip>}</a>
-                  <Dropdown overlay={menu} trigger={['click']} style={{float: "right"}}>
+                  <Dropdown overlay={this.getMenu()} trigger={['click']}>
                       <a className={["ant-dropdown-link"].join(' ')} style={{color: '#282c34'}}  onClick={e => e.preventDefault()}>
                         <Avatar src={iconLogo} />
                         <CaretDownOutlined />
@@ -166,15 +191,32 @@ export default class App extends React.Component {
                     background: '#fff'
                   }}
                 >
+                  <Modal
+                    title="感谢您的支持"
+                    visible={this.state.visible}
+                    onCancel={this.handleCancel}
+                    footer={[
+                      <Button key="back" onClick={this.handleCancel}>
+                        关闭
+                      </Button>
+                    ]}>
+                      <Row justify="center">
+                        <Col>
+                          <QRCode value="https://ankang94.github.io" fgColor="#4bd600"></QRCode>
+                        </Col>
+                      </Row>
+                  </Modal>
                   <Switch>
-                    <Redirect exact from="/" to="/life/shop"></Redirect>
+                    <Redirect exact from="/" to="/work/summary"></Redirect>
                     <Route path="/amuse/King" component={ Game }></Route>
                     <Route path="/amuse/movie" component={ VideoPlayer }></Route>
                     <Route path="/amuse/music" component={ FileUploader }></Route>
                     <Route path="/life/photos" component={ Photo }></Route>
                     <Route path="/life/story" component={ Story }></Route>
                     <Route path="/life/shop" component={ Shopping }></Route>
-                    <Route path="/work/chart" component={ Chart }></Route>
+                    <Route exact path="/work/technical" component={ Technical }></Route>
+                    <Route path="/work/technical/echarts" component={ Chart }></Route>
+                    <Route path="/work/technical/qrcode" component={ QRCodeDemo }></Route>
                     <Route exact path="/work/summary" component={ ArticleListAll }></Route>
                     <Route exact path="/work/summary/:id" component={ ArticlePaper }></Route>
                   </Switch>
@@ -183,7 +225,7 @@ export default class App extends React.Component {
             </Layout>
           </Layout>
         </Layout>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 

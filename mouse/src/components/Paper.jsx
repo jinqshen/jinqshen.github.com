@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import 'github-markdown-css';
+import '../public/less/Paper.less';
 import CodeBlock from './CodeBlock';
 
 class Paper extends React.Component {
@@ -21,7 +23,7 @@ class Paper extends React.Component {
     render() {
         return (
             <>
-                <ReactMarkdown source={require('../public/md/' + this.props.content).default} escapeHtml={false} renderers={{code: CodeBlock}} ></ReactMarkdown>
+                <ReactMarkdown className='markdown-body' source={require('../public/md/' + this.props.content).default} escapeHtml={true} renderers={{code: CodeBlock}} ></ReactMarkdown>
             </>
         )
     }
